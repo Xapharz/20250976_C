@@ -5,44 +5,38 @@
 #define SIZE 100
 
 int main() {
-    int n;  // 상품 개수
+    int n;
     scanf("%d", &n);
 
-    int store[SIZE];   // 입고 수량
-    int sale[SIZE];      // 판매 수량
-    int inventory[SIZE];    // 재고 수량
+    int store[SIZE];
+    int sale[SIZE];
+    int inventory[SIZE];
 
     int totalStore = 0, totalSale = 0;
 
-    // 상품별 입고 수량 입력
     for (int i = 0; i < n; i++) {
         scanf("%d", &store[i]);
         totalStore += store[i];
     }
 
-    // 상품별 판매 수량 입력
     for (int i = 0; i < n; i++) {
         scanf("%d", &sale[i]);
         totalSale += sale[i];
     }
 
-    // 재고 계산
     for (int i = 0; i < n; i++) {
         inventory[i] = store[i] - sale[i];
     }
 
-    // 1. 전체 재고 출력
     printf("재고수량 : ");
     for (int i = 0; i < n; i++) {
         printf("%d ", inventory[i]);
     }
     printf("\n");
 
-    // 2. 총 판매량 및 판매율
     double rate = (double) totalSale / totalStore * 100;
     printf("총 판매량 : %d (판매율 %.2f%%)\n", totalSale, rate);
 
-    // 3. 최대 판매량, 최소 판매량
     int maxSold = sale[0], minSold = sale[0];
     int maxID = 1, minID = 1;
     for (int i = 1; i < n; i++) {
@@ -58,7 +52,6 @@ int main() {
     printf("가장 많이 판매된 상품 : ID %d, 판매량 %d\n", maxID, maxSold);
     printf("가장 적게 판매된 상품 : ID %d, 판매량 %d\n", minID, minSold);
 
-    // 4. 재고 부족(2 이하) 상품 출력
     for (int i = 0; i < n; i++) {
         if (inventory[i] <= 2) {
             printf("상품 ID %d : 재고부족(%d)\n", i + 1, inventory[i]);
@@ -67,3 +60,4 @@ int main() {
 
     return 0;
 }
+
